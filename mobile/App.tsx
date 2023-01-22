@@ -1,5 +1,6 @@
 import { StatusBar } from 'react-native';
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold } from '@expo-google-fonts/inter'
+import './src/lib/dayjs'
 import { Loading } from './src/components/Loading';
 import { Routes } from './src/routes';
 
