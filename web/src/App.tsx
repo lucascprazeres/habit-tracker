@@ -1,10 +1,6 @@
 import './styles/global.css'
+import './lib/dayjs'
 
-// import { Habit } from "./components/Habit";
-
-import logoImg from './assets/logo.svg'
-
-import './styles/global.css'
 import { Header } from './components/Header'
 import { SummaryTable } from './components/SummaryTable'
 
