@@ -14,6 +14,7 @@ type HabitsInfo = {
   allHabits: Habit[]
   completedHabits: string[]
 }
+
 interface HabitsListProps {
   date: Date
   onCompletedChanged: (completed: number) => void
