@@ -7,18 +7,26 @@ import {
   FormContainer,
   Input,
   Label,
+  SubmitButton,
 } from './styles'
 import { AVAILABLE_WEEK_DAYS } from './constants'
+import { useForm } from 'react-hook-form'
 
 export function NewHabitForm() {
+  const { register, handleSubmit } = useForm()
+
+  async function handleCreateNewHabit(data) {
+    console.log(data)
+  }
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit(handleCreateNewHabit)}>
       <Label htmlFor="title">Qual seu comprometimento?</Label>
 
       <Input
+        {...register('title')}
         type="text"
         id="title"
-        name="title"
         autoFocus
         placeholder="ex.: Exercícios, dormir bem, etc..."
       />
@@ -38,6 +46,11 @@ export function NewHabitForm() {
           </CheckboxItem>
         ))}
       </CheckboxContainer>
+
+      <SubmitButton type="submit">
+        <Check size={24} weight="bold" />
+        Confirmar
+      </SubmitButton>
     </FormContainer>
   )
 }

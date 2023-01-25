@@ -36,7 +36,7 @@ export const Input = styled.input`
 export const CheckboxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin-top: 0.7rem;
 `
@@ -76,4 +76,26 @@ export const CheckboxItem = styled(Checkbox.Root)`
 
 export const CheckboxTitle = styled.span`
   line-height: 1.25;
+`
+
+export const SubmitButton = styled.button`
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  background-color: ${(props) => props.theme['green-600']};
+
+  &:hover {
+    background-color: ${(props) => props.theme['green-500']};
+    transition: background-color 0.2s;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme['green-500']};
+  }
 `
