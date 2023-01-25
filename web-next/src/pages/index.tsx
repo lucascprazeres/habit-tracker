@@ -1,4 +1,5 @@
-import { PageContainer, PageContent } from '@/styles/pages/Home'
+import { Header } from '@app/components/Header'
+import { PageContainer, PageContent } from '@app/styles/pages/Home'
 import Head from 'next/head'
 
 export default function Home() {
@@ -10,12 +11,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     
-     <PageContainer>
-      <PageContent>
-        <h1>Hello world</h1>
-      </PageContent>
-     </PageContainer>
+
+      <PageContainer>
+        <PageContent>
+          <Header />
+        </PageContent>
+      </PageContainer>
     </>
   )
 }
