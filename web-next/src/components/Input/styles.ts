@@ -8,7 +8,7 @@ export const StyledInput = styled.input<InputProps>`
   margin-top: 0.75rem;
   background: ${(props) => props.theme['zinc-800']};
   color: ${(props) => props.theme.white};
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   &::placeholder {
     color: ${(props) => props.theme['zinc-400']};

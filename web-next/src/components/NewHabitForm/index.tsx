@@ -15,6 +15,7 @@ import { Input } from '../Input'
 
 import * as api from '../../api'
 import { Loader } from '../Loader'
+import { FormError } from '../FormError'
 
 interface CreateNewHabitData {
   title: string
@@ -63,6 +64,8 @@ export function NewHabitForm() {
           },
         })}
       />
+
+      <FormError error={errors.title} />
 
       <Label>Qual é a recorrência?</Label>
 
