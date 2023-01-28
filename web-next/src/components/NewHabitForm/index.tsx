@@ -5,18 +5,46 @@ import {
   CheckboxItem,
   CheckboxTitle,
   FormContainer,
-  Input,
   Label,
   SubmitButton,
 } from './styles'
 import { AVAILABLE_WEEK_DAYS } from './constants'
 import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+import { Input } from '../Input'
+
+import * as api from '../../api'
+import { Loader } from '../Loader'
+
+interface CreateNewHabitData {
+  title: string
+}
 
 export function NewHabitForm() {
-  const { register, handleSubmit } = useForm()
+  const [weekDays, setWeekDays] = useState<number[]>([])
 
-  async function handleCreateNewHabit(data) {
-    console.log(data)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<CreateNewHabitData>({ mode: 'onSubmit' })
+
+  async function handleCreateNewHabit({ title }: CreateNewHabitData) {
+    if (!weekDays) return
+
+    await api.createNewHabit({ title, weekDays })
+
+    alert('Novo hábito criado com sucesso!')
+  }
+
+  function handleToggleWeekDay(weekDayIndex: number) {
+    if (weekDays.includes(weekDayIndex)) {
+      return setWeekDays((prevState) =>
+        prevState.filter((index) => index !== weekDayIndex),
+      )
+    }
+
+    setWeekDays((prevState) => [...prevState, weekDayIndex])
   }
 
   return (
@@ -24,18 +52,26 @@ export function NewHabitForm() {
       <Label htmlFor="title">Qual seu comprometimento?</Label>
 
       <Input
-        {...register('title')}
         type="text"
         id="title"
-        autoFocus
+        hasError={!!errors.title}
         placeholder="ex.: Exercícios, dormir bem, etc..."
+        {...register('title', {
+          required: {
+            value: true,
+            message: 'O nome do hábito deve ser inserido.',
+          },
+        })}
       />
 
       <Label>Qual é a recorrência?</Label>
 
       <CheckboxContainer>
-        {AVAILABLE_WEEK_DAYS.map((weekDay) => (
-          <CheckboxItem key={weekDay}>
+        {AVAILABLE_WEEK_DAYS.map((weekDay, index) => (
+          <CheckboxItem
+            key={weekDay}
+            onCheckedChange={() => handleToggleWeekDay(index)}
+          >
             <div>
               <Checkbox.Indicator>
                 <Check size={24} color="#fff" />
@@ -47,9 +83,15 @@ export function NewHabitForm() {
         ))}
       </CheckboxContainer>
 
-      <SubmitButton type="submit">
-        <Check size={24} weight="bold" />
-        Confirmar
+      <SubmitButton type="submit" disabled={!!errors.title || !weekDays.length}>
+        {isSubmitting ? (
+          <Loader />
+        ) : (
+          <>
+            <Check size={24} weight="bold" />
+            Confirmar
+          </>
+        )}
       </SubmitButton>
     </FormContainer>
   )

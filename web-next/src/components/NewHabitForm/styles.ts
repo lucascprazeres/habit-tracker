@@ -14,25 +14,6 @@ export const Label = styled.label`
   line-height: 1.25;
 `
 
-export const Input = styled.input`
-  border: 2px solid transparent;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-top: 0.75rem;
-  background: ${(props) => props.theme['zinc-800']};
-  color: ${(props) => props.theme.white};
-  margin-bottom: 2rem;
-
-  &::placeholder {
-    color: ${(props) => props.theme['zinc-400']};
-  }
-
-  &:focus {
-    outline: none;
-    border: 2px solid ${(props) => props.theme['green-500']};
-  }
-`
-
 export const CheckboxContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,7 +70,7 @@ export const SubmitButton = styled.button`
   font-weight: 600;
   background-color: ${(props) => props.theme['green-600']};
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${(props) => props.theme['green-500']};
     transition: background-color 0.2s;
   }
@@ -97,5 +78,10 @@ export const SubmitButton = styled.button`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px ${(props) => props.theme['green-500']};
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `

@@ -23,6 +23,8 @@ export const defaultTheme = {
   'green-600': '#16a34a',
   'green-500': '#22c55e',
 
+  'red-600': '#dc2626',
+
   background: '#09090A',
   white: '#FFF',
 } as const
