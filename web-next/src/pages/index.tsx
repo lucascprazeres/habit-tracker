@@ -1,4 +1,5 @@
 import { Header } from '@app/components/Header'
+import { SummaryTable } from '@app/components/SummaryTable'
 import { PageContainer, PageContent } from '@app/styles/pages/Home'
 import Head from 'next/head'
 
@@ -15,6 +16,7 @@ export default function Home() {
       <PageContainer>
         <PageContent>
           <Header />
+          <SummaryTable />
         </PageContent>
       </PageContainer>
     </>

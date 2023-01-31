@@ -1,3 +1,5 @@
+import '../lib/dayjs'
+
 import { GlobalStyle } from '@app/styles/globals'
 import { defaultTheme } from '@app/styles/themes/defaut'
 import type { AppProps } from 'next/app'
